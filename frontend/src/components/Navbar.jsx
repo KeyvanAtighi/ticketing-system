@@ -2,17 +2,23 @@ import { Link } from "react-router-dom"
 
 function Navbar() {
   return (
-    <nav className="navbar">
+    <nav className="nav container">
+        <Link to={'/'}>
       <div className="logo">
-        <Link to={'/'}>Ticketing System</Link>
+          Ticketing System
       </div>
-      <ul>
-        <li className="navItem">
-          <Link to={'/register'}>register</Link>
+          </Link>
+      <ul className="nav-items">
+          <Link to={'/register'}>
+        <li className="btn">
+            register
         </li>
-        <li className="navItem">
-          <Link to={'/login'}>login</Link>
+            </Link>
+          <Link to={'/login'}>
+        <li className="btn">
+            login
         </li>
+            </Link>
       </ul>
     </nav>
   )
