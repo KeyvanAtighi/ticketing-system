@@ -1,14 +1,8 @@
-import { useState, useEffect } from 'react'
-import {Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import {Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
-// redux
-import {useSelector, useDispatch} from 'react-redux'
-import { register } from '../features/auth/authSlice'
-import { reset } from 'nodemon'
-
 function Register() {
-  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,21 +11,6 @@ function Register() {
   })
 
   const {name, email, password, passwordConfirm} = formData
-
-  // redux
-  const dispatch = useDispatch()
-  const {user, isError, isSuccess, isLoading, message} = useSelector(state => state.auth)
-
-  useEffect(()=>{
-    if(isError){
-      toast.error(message)
-    }
-    if(isError && user){
-      navigate('/')
-    }
-    dispatch(reset())
-
-  }, [isError, isSuccess, user, message, navigate, dispatch])
 
   const onChange = (e) => {
     setFormData(prevState => ({
@@ -45,8 +24,6 @@ function Register() {
 
     if(password !== passwordConfirm) {
       toast.error('passwords do not match ')
-    } else {
-      dispatch(register({name,email,password}))
     }
   }
 
